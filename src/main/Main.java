@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Initialize service providers
         Digicel digicel = new Digicel();
         Flow flow = new Flow();
 
@@ -19,11 +18,9 @@ public class Main {
         // Load data from files
         FileHandler.initializeProviderData(digicel, flow);
 
-        // Initialize sections
         AdministrationSection adminSection = new AdministrationSection();
         CustomerSection customerSection = new CustomerSection();
 
-        // Main menu loop
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Select a section:");
@@ -31,7 +28,7 @@ public class Main {
             System.out.println("2. Customer");
             System.out.println("3. Exit");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -41,10 +38,9 @@ public class Main {
                     customerSection.handleCustomerSection();
                     break;
                 case 3:
-                    // Save data before exiting
                     FileHandler.saveProviderData(digicel, flow);
                     System.out.println("Data saved. Exiting...");
-                    return; // Exit the application
+                    return;
                 default:
                     System.out.println("Invalid selection.");
             }

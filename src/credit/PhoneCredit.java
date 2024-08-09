@@ -55,14 +55,12 @@ public class PhoneCredit {
         this.status = status;
     }
 
-    // Method to mark a phone card as used
     public void markAsUsed() {
         this.status = "used";
         System.out.println("Phone credit marked as used.");
         updateCreditFile();
     }
 
-    // Method to display phone credit information
     @Override
     public String toString() {
         return "Card Number: " + cardNumber +
@@ -71,7 +69,6 @@ public class PhoneCredit {
     }
 
     private void updateCreditFile() {
-        // Determine which file to check
         String digicelFilePath = FileHandler.getDigicelCreditFilePath();
         String flowFilePath = FileHandler.getFlowCreditFilePath();
 

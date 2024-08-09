@@ -119,7 +119,7 @@ public class Digicel extends ServiceProvider {
     @Override
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
-        numCustomers = customers.size(); // Update numCustomers based on the list size
+        numCustomers = customers.size();
     }
 
     @Override

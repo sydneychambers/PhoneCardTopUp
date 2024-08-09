@@ -14,14 +14,13 @@ public class CustomerSection {
     private Digicel digicel;
     private Flow flow;
 
-    // Constructor to initialize the service providers
+    // PRimary Constructor
     public CustomerSection() {
         this.digicel = new Digicel();
         this.flow = new Flow();
         filehandler.FileHandler.initializeProviderData(digicel, flow);
     }
 
-    // Main method to handle customer interactions
     public void handleCustomerSection() {
         Scanner scanner = new Scanner(System.in);
         boolean keepRunning = true;
@@ -32,7 +31,7 @@ public class CustomerSection {
             System.out.println("2) Check Balance");
             System.out.println("3) Exit");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -50,7 +49,6 @@ public class CustomerSection {
         }
     }
 
-    // Helper method to handle adding credit
     private void handleAddCredit(Scanner scanner) {
     System.out.print("Enter your TRN (format: 000-000-000): ");
     String trn = scanner.nextLine();
@@ -80,7 +78,7 @@ public class CustomerSection {
         return;
     }
 
-    System.out.println("Found customer: " + customer);  // Debugging statement
+    System.out.println("Found customer: " + customer);
 
     if (!customer.getCustomerId().equals(trn)) {
         System.out.println("TRN does not match.");
@@ -116,7 +114,6 @@ public class CustomerSection {
         return cardNumber.matches("\\d{13}");
     }
 
-    // Helper method to handle checking balance
     private void handleCheckBalance(Scanner scanner) {
         System.out.print("Enter your telephone number (format: 301-000-0000): ");
         String telephoneNumber = scanner.nextLine();
@@ -147,9 +144,8 @@ public class CustomerSection {
         return pattern.matcher(phoneNumber).matches();
     }
 
-    // Helper method to determine provider by phone number prefix
     private ServiceProvider getProviderByPhoneNumber(String phoneNumber) {
-        String prefix = phoneNumber.substring(0, 3);  // Assuming phone number starts with provider prefix
+        String prefix = phoneNumber.substring(0, 3);
         switch (prefix) {
             case "301":
             case "302":
@@ -166,9 +162,8 @@ public class CustomerSection {
         }
     }
 
-    // Helper method to find a customer by phone number
     private Customer getCustomerByPhoneNumber(ServiceProvider provider, String phoneNumber) {
-        List<Customer> customers = provider.getCustomers();  // Call instance method on provider
+        List<Customer> customers = provider.getCustomers();
         for (Customer customer : customers) {
             System.out.println("Checking customer: " + customer);
             if (customer.getTelephoneNumber().equals(phoneNumber)) {
@@ -178,9 +173,8 @@ public class CustomerSection {
         return null;
     }
 
-    // Helper method to find phone credit by card number
     private PhoneCredit getCreditByCardNumber(ServiceProvider provider, String cardNumber) {
-        List<PhoneCredit> credits = provider.getPhoneCredits();  // Call instance method on provider
+        List<PhoneCredit> credits = provider.getPhoneCredits();
         for (PhoneCredit credit : credits) {
             if (credit.getCardNumber().equals(cardNumber)) {
                 return credit;

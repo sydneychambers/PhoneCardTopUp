@@ -26,7 +26,7 @@ public class Customer {
         this.lastName = lastName;
         this.address = address;
         this.telephoneNumber = telephoneNumber;
-        this.creditBalance = creditBalance;  // Initialize balance to $100 by default
+        this.creditBalance = creditBalance;t
     }
 
     // Copy constructor
@@ -86,7 +86,6 @@ public class Customer {
     }
 
     private void updateCustomerFile() {
-        // Determine the file path based on the customer's telephone number prefix
         String filePath;
         if (this.telephoneNumber.startsWith("301") || this.telephoneNumber.startsWith("302")
                 || this.telephoneNumber.startsWith("303") || this.telephoneNumber.startsWith("304")) {
@@ -119,7 +118,6 @@ public class Customer {
         }
     }
 
-    // Method to display customer information
     @Override
     public String toString() {
         return "Customer ID: " + customerId +

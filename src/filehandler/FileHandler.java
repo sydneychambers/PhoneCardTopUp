@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileHandler {
-    // File paths
     private static final String DIGICEL_CUSTOMERS_FILE = "src/files/Digicel_Customers.txt";
     private static final String FLOW_CUSTOMERS_FILE = "src/files/Flow_Customers.txt";
     private static final String DIGICEL_CREDIT_FILE = "src/files/Digicel_CardInformation.txt";
@@ -28,7 +27,7 @@ public class FileHandler {
         File file = new File(filePath);
         try {
             if (!file.exists()) {
-                file.getParentFile().mkdirs(); // Create parent directories if needed
+                file.getParentFile().mkdirs();
                 file.createNewFile(); // Create the file
                 System.out.println("Created missing file: " + filePath);
             }
@@ -38,7 +37,6 @@ public class FileHandler {
         }
     }
 
-    // Initialize provider data
     public static void initializeProviderData(Digicel digicel, Flow flow) {
         List<Customer> digicelCustomers = loadCustomers(DIGICEL_CUSTOMERS_FILE);
         List<PhoneCredit> digicelCredits = loadPhoneCredits(DIGICEL_CREDIT_FILE);
@@ -51,7 +49,6 @@ public class FileHandler {
         flow.setPhoneCredits(flowCredits);
     }
 
-    // Load customers from file
     public static List<Customer> loadCustomers(String filePath) {
         List<Customer> customers = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -75,7 +72,6 @@ public class FileHandler {
         return customers;
     }
 
-   // Save customers to file
     public static void saveCustomers(List<Customer> customers, String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Customer customer : customers) {
@@ -91,8 +87,6 @@ public class FileHandler {
         }
     }
 
-
-    // Load phone credits from file
     public static List<PhoneCredit> loadPhoneCredits(String filePath) {
         List<PhoneCredit> credits = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -111,7 +105,6 @@ public class FileHandler {
         return credits;
     }
 
-    // Save phone credits to file
     public static void savePhoneCredits(List<PhoneCredit> credits, String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (PhoneCredit credit : credits) {
@@ -124,8 +117,7 @@ public class FileHandler {
             System.err.println("Error writing phone credit file: " + e.getMessage());
         }
     }
-
-    // Save provider data
+    
     public static void saveProviderData(Digicel digicel, Flow flow) {
         saveCustomers(digicel.getCustomers(), DIGICEL_CUSTOMERS_FILE);
         savePhoneCredits(digicel.getPhoneCredits(), DIGICEL_CREDIT_FILE);

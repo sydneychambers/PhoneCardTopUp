@@ -12,14 +12,13 @@ public class AdministrationSection {
     private Digicel digicel;
     private Flow flow;
 
-    // Constructor to initialize the service providers
+    // Primary Constructor
     public AdministrationSection() {
         this.digicel = new Digicel();
         this.flow = new Flow();
         filehandler.FileHandler.initializeProviderData(digicel, flow);
     }
 
-    // Main method to handle administration interactions
     public void handleAdminSection() {
         Scanner scanner = new Scanner(System.in);
         boolean adminMenuActive = true;
@@ -30,7 +29,7 @@ public class AdministrationSection {
             System.out.println("2. Flow");
             System.out.println("3. Exit to Main Menu");
             int providerChoice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             ServiceProvider selectedProvider = null;
             String password = "";
@@ -110,7 +109,6 @@ public class AdministrationSection {
         }
     }
 
-    // Helper method to add a customer
     private void addCustomer(ServiceProvider provider, Scanner scanner) {
         System.out.print("Enter Customer ID (TRN): ");
         String customerId = scanner.nextLine();
